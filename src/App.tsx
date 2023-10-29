@@ -8,7 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import DashboardPage from "./pages/dashboard/dashboardPage/components/dashboardPage";
+import DashboardPage from "./pages/dashboard/dashboardPage/components/DashboardPage";
 import SignInPage from "./pages/signin/signInPage/components/SignInPage";
 import SignUpPage from "./pages/signup/signUpPage/components/SignUpPage";
 
