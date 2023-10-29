@@ -1,5 +1,11 @@
+import AuthProvider from "../../authProvider/components/AuthProvider";
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <AuthProvider>
+      <div>dash</div>
+    </AuthProvider>
+  );
 };
 
 export default DashboardPage;
