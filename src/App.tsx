@@ -1,5 +1,7 @@
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -29,6 +31,7 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <MantineProvider>
+      <Notifications />
       <RouterProvider router={router} />
     </MantineProvider>
   );

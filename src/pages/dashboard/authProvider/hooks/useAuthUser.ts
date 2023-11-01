@@ -6,6 +6,7 @@ const useAuthUser = () => {
   if (!context) {
     throw new Error("useAuthUser should be wrapped in AuthProvider");
   }
+  return context;
 };
 
 export default useAuthUser;
