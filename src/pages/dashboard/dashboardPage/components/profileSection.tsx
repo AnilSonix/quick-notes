@@ -1,11 +1,21 @@
-import { Avatar, Group, Menu, Stack, Text, rem } from "@mantine/core";
+import {
+  Avatar,
+  Group,
+  Menu,
+  Stack,
+  Text,
+  rem,
+  useMantineColorScheme,
+} from "@mantine/core";
 import { modals } from "@mantine/modals";
 import {
   IconMessageCircle,
+  IconMoon,
   IconPhoto,
   IconPower,
   IconSearch,
   IconSettings,
+  IconSun,
 } from "@tabler/icons-react";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../../../../../firebaseConfig";
@@ -14,6 +24,7 @@ import useAuthUser from "../../authProvider/hooks/useAuthUser";
 export function ProfileSection() {
   const { user } = useAuthUser();
   const [signOut] = useSignOut(auth);
+  const { setColorScheme, colorScheme } = useMantineColorScheme();
 
   function onSignOut() {
     modals.openConfirmModal({
@@ -24,6 +35,14 @@ export function ProfileSection() {
       confirmProps: { color: "red" },
       onConfirm: signOut,
     });
+  }
+
+  function toggleTheme() {
+    if (colorScheme === "light" || colorScheme === "auto") {
+      setColorScheme("dark");
+    } else {
+      setColorScheme("light");
+    }
   }
 
   return (
@@ -79,6 +98,20 @@ export function ProfileSection() {
           }
         >
           Search
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            colorScheme === "dark" ? (
+              <IconSun style={{ width: rem(14), height: rem(14) }} />
+            ) : (
+              <IconMoon style={{ width: rem(14), height: rem(14) }} />
+            )
+          }
+          onClick={toggleTheme}
+        >
+          Turn on{" "}
+          {colorScheme === "light" || colorScheme === "auto" ? "dark" : "light"}{" "}
+          theme
         </Menu.Item>
 
         <Menu.Divider />
