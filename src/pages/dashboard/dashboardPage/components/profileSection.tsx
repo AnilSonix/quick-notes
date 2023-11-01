@@ -1,4 +1,5 @@
 import { Avatar, Group, Menu, Stack, Text, rem } from "@mantine/core";
+import { modals } from "@mantine/modals";
 import {
   IconMessageCircle,
   IconPhoto,
@@ -13,6 +14,17 @@ import useAuthUser from "../../authProvider/hooks/useAuthUser";
 export function ProfileSection() {
   const { user } = useAuthUser();
   const [signOut] = useSignOut(auth);
+
+  function onSignOut() {
+    modals.openConfirmModal({
+      title: "Sign out ?",
+      centered: true,
+      children: <Text size="sm">Are you sure you want to sign out ?</Text>,
+      labels: { confirm: "Sign out", cancel: "Cancel" },
+      confirmProps: { color: "red" },
+      onConfirm: signOut,
+    });
+  }
 
   return (
     <Menu shadow="md" width={200}>
@@ -76,7 +88,7 @@ export function ProfileSection() {
           leftSection={
             <IconPower style={{ width: rem(14), height: rem(14) }} />
           }
-          onClick={signOut}
+          onClick={onSignOut}
         >
           Sign out
         </Menu.Item>
